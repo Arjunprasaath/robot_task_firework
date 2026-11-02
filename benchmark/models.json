@@ -1,0 +1,66 @@
+{
+  "glimmer-30b": {
+    "display": "Muse Glimmer 30B (Meta)",
+    "base_model": "accounts/fireworks/models/muse-glimmer-30b",
+    "deployment": "ml45-glimmer-30b",
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "shape": "accounts/fireworks/deploymentShapes/dkuwotf7",
+    "gpus": "1x H200"
+  },
+  "nemotron-super-vl": {
+    "display": "NVIDIA Nemotron 3.5 Super VL 120B A12B BF16",
+    "base_model": "accounts/fireworks/models/nvidia-nemotron-3p5-super-vl-120b-a12b-bf16",
+    "deployment": "ml45-nemotron-super-vl",
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "shape": "accounts/fireworks/deploymentShapes/rft-nemotron-3-5-super-vl-ea1008-bf16-262k-b300-tp-ep",
+    "gpus": "4x B300"
+  },
+  "qwen3p8-27b": {
+    "display": "Qwen3.8 27B",
+    "base_model": "accounts/fireworks/models/qwen3p8-27b",
+    "deployment": "ml45-qwen3p8-27b",
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "shape": "accounts/fireworks/deploymentShapes/sva2n3mh",
+    "gpus": "1x H100"
+  },
+  "gemma4-26b-a4b": {
+    "display": "Gemma 4 26B A4B IT",
+    "base_model": "accounts/fireworks/models/gemma-4-26b-a4b-it",
+    "deployment": "ml45-gemma4-26b-a4b",
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "shape": "accounts/fireworks/deploymentShapes/rft-gemma-4-26b-a4b-it",
+    "gpus": "4x B200"
+  },
+  "nemotron-ml45-sft": {
+    "display": "Nemotron 3.5 Super VL + LoRA SFT on ML45 train (45 tasks), zero-shot on test",
+    "base_model": "accounts/fireworks/models/nvidia-nemotron-3p5-super-vl-120b-a12b-bf16",
+    "deployment": "ml45-nemotron-ml45-sft",
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "serve_model": "accounts/{account}/models/nemotron-ml45-sft",
+    "shape": "accounts/fireworks/deploymentShapes/rft-nemotron-3-5-super-vl-ea1008-bf16-262k-b300-tp-ep",
+    "gpus": "4x B300",
+    "note": "LoRA served live-merged on its own deployment (no multi-LoRA shape exists for this model)"
+  },
+  "nemotron-ml45-5shot": {
+    "display": "nemotron-ml45-sft + LoRA warm-start on 5 demos per test task",
+    "base_model": "accounts/fireworks/models/nvidia-nemotron-3p5-super-vl-120b-a12b-bf16",
+    "deployment": "ml45-nemotron-ml45-5shot",
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "serve_model": "accounts/{account}/models/nemotron-ml45-5shot",
+    "shape": "accounts/fireworks/deploymentShapes/rft-nemotron-3-5-super-vl-ea1008-bf16-262k-b300-tp-ep",
+    "gpus": "4x B300",
+    "note": "LoRA served live-merged on its own deployment (no multi-LoRA shape exists for this model)"
+  }
+}

@@ -1,0 +1,3036 @@
+{
+ "bench_version": "ml45-heldout-v1",
+ "spec_fingerprint": "0edf10750a22e293",
+ "built_with": {
+  "metaworld": "3.1.1",
+  "mujoco": "3.3.0",
+  "gymnasium": "1.3.0",
+  "numpy": "2.2.6",
+  "pillow": "11.3.0",
+  "python": "3.11.13",
+  "platform": "darwin"
+ },
+ "max_steps": 500,
+ "chunk": 3,
+ "system_prompt": "You are a robot control policy for a Sawyer arm on a tabletop. You see one camera frame, the task instruction, the goal, the current end-effector position in metres, and the gripper state. Predict the next 3 actions. Each action is dx,dy,dz,grip where dx,dy,dz are integers from -10 to 10 meaning fractions of a centimetre of end-effector movement (10 = 1 cm), and grip is an integer from -2 to 2: 2 closes the gripper hard, 0 holds the current grip, -2 opens it. Reply with exactly 3 actions separated by semicolons and nothing else, for example: 2,-1,0,0;3,0,0,0;3,0,0,1",
+ "grammar": "root ::= act \";\" act \";\" act\nact ::= xyz \",\" xyz \",\" xyz \",\" grip\nxyz ::= \"0\" | \"-\"? [1-9] | \"-\"? \"10\"\ngrip ::= \"0\" | \"-\"? [1-2]\n",
+ "decoding": {
+  "temperature": 0.0,
+  "top_p": 1.0,
+  "max_tokens": 64,
+  "seed": 0,
+  "response_format": {
+   "type": "grammar",
+   "grammar": "root ::= act \";\" act \";\" act\nact ::= xyz \",\" xyz \",\" xyz \",\" grip\nxyz ::= \"0\" | \"-\"? [1-9] | \"-\"? \"10\"\ngrip ::= \"0\" | \"-\"? [1-2]\n"
+  }
+ },
+ "goal_names": {
+  "bin-picking-v3": "the empty bin",
+  "box-close-v3": "the box",
+  "door-lock-v3": "the door lock",
+  "door-unlock-v3": "the door lock",
+  "hand-insert-v3": "the hole"
+ },
+ "episodes": [
+  {
+   "id": "bin-picking-v3:1000",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1000,
+   "obj": [
+    -0.0635,
+    0.6818,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "a8edcfb227f67301",
+   "expert": {
+    "success": true,
+    "steps": 94
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 118
+   }
+  },
+  {
+   "id": "bin-picking-v3:1001",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1001,
+   "obj": [
+    -0.1764,
+    0.6943,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "30abc60ed426ec6f",
+   "expert": {
+    "success": true,
+    "steps": 116
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 137
+   }
+  },
+  {
+   "id": "bin-picking-v3:1002",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1002,
+   "obj": [
+    -0.1865,
+    0.7189,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "d4d76aa4b38de706",
+   "expert": {
+    "success": true,
+    "steps": 123
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 114
+   }
+  },
+  {
+   "id": "bin-picking-v3:1003",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1003,
+   "obj": [
+    -0.0688,
+    0.685,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "ad997a4a841207dd",
+   "expert": {
+    "success": true,
+    "steps": 96
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 120
+   }
+  },
+  {
+   "id": "bin-picking-v3:1004",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1004,
+   "obj": [
+    -0.1309,
+    0.7051,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "ad40eb72998f2b64",
+   "expert": {
+    "success": true,
+    "steps": 110
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 101
+   }
+  },
+  {
+   "id": "bin-picking-v3:1005",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1005,
+   "obj": [
+    -0.1265,
+    0.6944,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "c29a39f208b58990",
+   "expert": {
+    "success": true,
+    "steps": 102
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 127
+   }
+  },
+  {
+   "id": "bin-picking-v3:1006",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1006,
+   "obj": [
+    -0.0312,
+    0.6712,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "5e6d4c010467369c",
+   "expert": {
+    "success": true,
+    "steps": 145
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 138
+   }
+  },
+  {
+   "id": "bin-picking-v3:1007",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1007,
+   "obj": [
+    -0.0367,
+    0.6678,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "2b4483f0133a0906",
+   "expert": {
+    "success": true,
+    "steps": 130
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 92
+   }
+  },
+  {
+   "id": "bin-picking-v3:1008",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1008,
+   "obj": [
+    -0.1425,
+    0.7181,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "64c788640742336b",
+   "expert": {
+    "success": true,
+    "steps": 111
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 106
+   }
+  },
+  {
+   "id": "bin-picking-v3:1009",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1009,
+   "obj": [
+    -0.1049,
+    0.6898,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "7d818a3c9cbd63b0",
+   "expert": {
+    "success": true,
+    "steps": 99
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 123
+   }
+  },
+  {
+   "id": "bin-picking-v3:1010",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1010,
+   "obj": [
+    -0.1611,
+    0.7208,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "8a9dc659ce244d79",
+   "expert": {
+    "success": true,
+    "steps": 116
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 110
+   }
+  },
+  {
+   "id": "bin-picking-v3:1011",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1011,
+   "obj": [
+    -0.1526,
+    0.6889,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "47d96bea7c0ff690",
+   "expert": {
+    "success": true,
+    "steps": 106
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 132
+   }
+  },
+  {
+   "id": "bin-picking-v3:1012",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1012,
+   "obj": [
+    -0.0577,
+    0.7209,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "45705490011666be",
+   "expert": {
+    "success": true,
+    "steps": 130
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 95
+   }
+  },
+  {
+   "id": "bin-picking-v3:1013",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1013,
+   "obj": [
+    -0.0941,
+    0.6922,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "c20f9e7dfcc6dc6c",
+   "expert": {
+    "success": true,
+    "steps": 99
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 121
+   }
+  },
+  {
+   "id": "bin-picking-v3:1014",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1014,
+   "obj": [
+    -0.0426,
+    0.7003,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "78ea5b5643d60fcf",
+   "expert": {
+    "success": true,
+    "steps": 134
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 137
+   }
+  },
+  {
+   "id": "bin-picking-v3:1015",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1015,
+   "obj": [
+    -0.0624,
+    0.6744,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "0cbaf3d329692feb",
+   "expert": {
+    "success": true,
+    "steps": 92
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 115
+   }
+  },
+  {
+   "id": "bin-picking-v3:1016",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1016,
+   "obj": [
+    -0.1388,
+    0.7246,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "ad2eecf5b1e86254",
+   "expert": {
+    "success": true,
+    "steps": 120
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 111
+   }
+  },
+  {
+   "id": "bin-picking-v3:1017",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1017,
+   "obj": [
+    -0.1409,
+    0.7043,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "8ffb45676fa85f37",
+   "expert": {
+    "success": true,
+    "steps": 112
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 117
+   }
+  },
+  {
+   "id": "bin-picking-v3:1018",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1018,
+   "obj": [
+    -0.1268,
+    0.6596,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "6468734a9333896a",
+   "expert": {
+    "success": true,
+    "steps": 158
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 101
+   }
+  },
+  {
+   "id": "bin-picking-v3:1019",
+   "task_index": 2,
+   "env": "bin-picking-v3",
+   "seed": 1019,
+   "obj": [
+    -0.126,
+    0.717,
+    0.03
+   ],
+   "goal": [
+    0.12,
+    0.7,
+    0.0
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "2ea90de1b240e30e",
+   "expert": {
+    "success": true,
+    "steps": 110
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 106
+   }
+  },
+  {
+   "id": "box-close-v3:1000",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1000,
+   "obj": [
+    -0.0364,
+    0.5122,
+    0.095
+   ],
+   "goal": [
+    0.0563,
+    0.7778,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "90ffce3560df5963",
+   "expert": {
+    "success": true,
+    "steps": 108
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 107
+   }
+  },
+  {
+   "id": "box-close-v3:1001",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1001,
+   "obj": [
+    -0.0289,
+    0.5388,
+    0.095
+   ],
+   "goal": [
+    0.0797,
+    0.7962,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "a3bb22c3be3e1eb9",
+   "expert": {
+    "success": true,
+    "steps": 130
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 126
+   }
+  },
+  {
+   "id": "box-close-v3:1002",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1002,
+   "obj": [
+    0.048,
+    0.5135,
+    0.095
+   ],
+   "goal": [
+    0.0418,
+    0.7724,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "dfe803961cd4c047",
+   "expert": {
+    "success": true,
+    "steps": 90
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 90
+   }
+  },
+  {
+   "id": "box-close-v3:1003",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1003,
+   "obj": [
+    -0.0145,
+    0.5167,
+    0.095
+   ],
+   "goal": [
+    -0.0192,
+    0.7959,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "3a05962ba83fa540",
+   "expert": {
+    "success": true,
+    "steps": 111
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 112
+   }
+  },
+  {
+   "id": "box-close-v3:1004",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1004,
+   "obj": [
+    0.0278,
+    0.5156,
+    0.095
+   ],
+   "goal": [
+    0.0096,
+    0.7841,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "f39c660cdcdd4f2e",
+   "expert": {
+    "success": true,
+    "steps": 94
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 94
+   }
+  },
+  {
+   "id": "box-close-v3:1005",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1005,
+   "obj": [
+    -0.0161,
+    0.5117,
+    0.095
+   ],
+   "goal": [
+    -0.0981,
+    0.7569,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "916b62b5ef347d15",
+   "expert": {
+    "success": true,
+    "steps": 103
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 104
+   }
+  },
+  {
+   "id": "box-close-v3:1006",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1006,
+   "obj": [
+    -0.0186,
+    0.5306,
+    0.095
+   ],
+   "goal": [
+    -0.0323,
+    0.7878,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "0c88d2d6b7152388",
+   "expert": {
+    "success": true,
+    "steps": 135
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 123
+   }
+  },
+  {
+   "id": "box-close-v3:1007",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1007,
+   "obj": [
+    0.0227,
+    0.5122,
+    0.095
+   ],
+   "goal": [
+    0.0119,
+    0.7828,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "c68c09ca9de2dc10",
+   "expert": {
+    "success": true,
+    "steps": 92
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 93
+   }
+  },
+  {
+   "id": "box-close-v3:1008",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1008,
+   "obj": [
+    -0.0061,
+    0.5234,
+    0.095
+   ],
+   "goal": [
+    -0.0632,
+    0.7918,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "3731424d08fe16d1",
+   "expert": {
+    "success": true,
+    "steps": 112
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 112
+   }
+  },
+  {
+   "id": "box-close-v3:1009",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1009,
+   "obj": [
+    -0.0486,
+    0.5107,
+    0.095
+   ],
+   "goal": [
+    -0.0712,
+    0.7778,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "5d35134cf91eb224",
+   "expert": {
+    "success": true,
+    "steps": 108
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 108
+   }
+  },
+  {
+   "id": "box-close-v3:1010",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1010,
+   "obj": [
+    -0.0135,
+    0.5051,
+    0.095
+   ],
+   "goal": [
+    0.064,
+    0.7605,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "8fbc4ebeecfd8eeb",
+   "expert": {
+    "success": true,
+    "steps": 95
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 104
+   }
+  },
+  {
+   "id": "box-close-v3:1011",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1011,
+   "obj": [
+    -0.0189,
+    0.507,
+    0.095
+   ],
+   "goal": [
+    0.0041,
+    0.7815,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "03f2cd9fd3d5816f",
+   "expert": {
+    "success": true,
+    "steps": 107
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 110
+   }
+  },
+  {
+   "id": "box-close-v3:1012",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1012,
+   "obj": [
+    0.0265,
+    0.533,
+    0.095
+   ],
+   "goal": [
+    -0.0621,
+    0.7788,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "c50c6345c10ed9d6",
+   "expert": {
+    "success": true,
+    "steps": 95
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 98
+   }
+  },
+  {
+   "id": "box-close-v3:1013",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1013,
+   "obj": [
+    -0.0118,
+    0.5019,
+    0.095
+   ],
+   "goal": [
+    -0.0764,
+    0.7669,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "abbc403ccfe4aef4",
+   "expert": {
+    "success": true,
+    "steps": 101
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 105
+   }
+  },
+  {
+   "id": "box-close-v3:1014",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1014,
+   "obj": [
+    -0.0233,
+    0.5013,
+    0.095
+   ],
+   "goal": [
+    -0.0941,
+    0.7613,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "3bb4e7a3b7c660ed",
+   "expert": {
+    "success": true,
+    "steps": 106
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 107
+   }
+  },
+  {
+   "id": "box-close-v3:1015",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1015,
+   "obj": [
+    -0.0098,
+    0.5057,
+    0.095
+   ],
+   "goal": [
+    -0.0057,
+    0.7726,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "fec2c221919434e7",
+   "expert": {
+    "success": true,
+    "steps": 96
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 100
+   }
+  },
+  {
+   "id": "box-close-v3:1016",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1016,
+   "obj": [
+    -0.0394,
+    0.5239,
+    0.095
+   ],
+   "goal": [
+    0.077,
+    0.7752,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "1bb40bd7735edf7a",
+   "expert": {
+    "success": true,
+    "steps": 133
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 141
+   }
+  },
+  {
+   "id": "box-close-v3:1017",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1017,
+   "obj": [
+    0.0091,
+    0.5291,
+    0.095
+   ],
+   "goal": [
+    -0.0583,
+    0.7764,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "81233334ffa15a11",
+   "expert": {
+    "success": true,
+    "steps": 103
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 109
+   }
+  },
+  {
+   "id": "box-close-v3:1018",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1018,
+   "obj": [
+    0.0054,
+    0.5142,
+    0.095
+   ],
+   "goal": [
+    0.0409,
+    0.7674,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "4e860c1a9f51f096",
+   "expert": {
+    "success": true,
+    "steps": 94
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 100
+   }
+  },
+  {
+   "id": "box-close-v3:1019",
+   "task_index": 3,
+   "env": "box-close-v3",
+   "seed": 1019,
+   "obj": [
+    0.0131,
+    0.534,
+    0.095
+   ],
+   "goal": [
+    0.0961,
+    0.7934,
+    0.133
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "affee742444a0b1a",
+   "expert": {
+    "success": true,
+    "steps": 102
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 106
+   }
+  },
+  {
+   "id": "door-lock-v3:1000",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1000,
+   "obj": [
+    0.1032,
+    0.6639,
+    0.221
+   ],
+   "goal": [
+    0.0132,
+    0.6639,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "14750e66947616f4",
+   "expert": {
+    "success": true,
+    "steps": 117
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 117
+   }
+  },
+  {
+   "id": "door-lock-v3:1001",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1001,
+   "obj": [
+    0.0527,
+    0.6755,
+    0.221
+   ],
+   "goal": [
+    -0.0373,
+    0.6755,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "87fa2ca396212575",
+   "expert": {
+    "success": true,
+    "steps": 62
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 62
+   }
+  },
+  {
+   "id": "door-lock-v3:1002",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1002,
+   "obj": [
+    0.0726,
+    0.6646,
+    0.2209
+   ],
+   "goal": [
+    -0.0174,
+    0.6646,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "8db8d9bd4b84c909",
+   "expert": {
+    "success": true,
+    "steps": 115
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 114
+   }
+  },
+  {
+   "id": "door-lock-v3:1003",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1003,
+   "obj": [
+    0.0162,
+    0.6578,
+    0.2206
+   ],
+   "goal": [
+    -0.0739,
+    0.6578,
+    0.111
+   ],
+   "ee0": [
+    0.004,
+    0.6,
+    0.195
+   ],
+   "image0_sha": "3171386f91e76e9f",
+   "expert": {
+    "success": true,
+    "steps": 58
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 58
+   }
+  },
+  {
+   "id": "door-lock-v3:1004",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1004,
+   "obj": [
+    0.1854,
+    0.6842,
+    0.221
+   ],
+   "goal": [
+    0.0954,
+    0.6842,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "e1c04cecf49b452d",
+   "expert": {
+    "success": true,
+    "steps": 76
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 76
+   }
+  },
+  {
+   "id": "door-lock-v3:1005",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1005,
+   "obj": [
+    0.0876,
+    0.6633,
+    0.2204
+   ],
+   "goal": [
+    -0.0024,
+    0.6633,
+    0.111
+   ],
+   "ee0": [
+    -0.002,
+    0.6,
+    0.196
+   ],
+   "image0_sha": "a78e860fe75c902b",
+   "expert": {
+    "success": true,
+    "steps": 115
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 60
+   }
+  },
+  {
+   "id": "door-lock-v3:1006",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1006,
+   "obj": [
+    0.1694,
+    0.6424,
+    0.221
+   ],
+   "goal": [
+    0.0794,
+    0.6424,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "8f0e1735e52193af",
+   "expert": {
+    "success": true,
+    "steps": 116
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 116
+   }
+  },
+  {
+   "id": "door-lock-v3:1007",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1007,
+   "obj": [
+    0.1814,
+    0.6812,
+    0.221
+   ],
+   "goal": [
+    0.0914,
+    0.6812,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "043f70ebe1885cdd",
+   "expert": {
+    "success": true,
+    "steps": 76
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 76
+   }
+  },
+  {
+   "id": "door-lock-v3:1008",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1008,
+   "obj": [
+    0.0302,
+    0.6573,
+    0.2203
+   ],
+   "goal": [
+    -0.0599,
+    0.6573,
+    0.111
+   ],
+   "ee0": [
+    0.004,
+    0.599,
+    0.195
+   ],
+   "image0_sha": "1be0e648aafde29d",
+   "expert": {
+    "success": true,
+    "steps": 58
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 58
+   }
+  },
+  {
+   "id": "door-lock-v3:1009",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1009,
+   "obj": [
+    0.135,
+    0.6595,
+    0.221
+   ],
+   "goal": [
+    0.045,
+    0.6595,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "2e8cd331f921fc95",
+   "expert": {
+    "success": true,
+    "steps": 60
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 60
+   }
+  },
+  {
+   "id": "door-lock-v3:1010",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1010,
+   "obj": [
+    0.0223,
+    0.6685,
+    0.2208
+   ],
+   "goal": [
+    -0.0677,
+    0.6685,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "80144b1fa24dc48f",
+   "expert": {
+    "success": true,
+    "steps": 62
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 62
+   }
+  },
+  {
+   "id": "door-lock-v3:1011",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1011,
+   "obj": [
+    0.0941,
+    0.6846,
+    0.221
+   ],
+   "goal": [
+    0.0041,
+    0.6846,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "cc1f84266e91d6fe",
+   "expert": {
+    "success": true,
+    "steps": 64
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 119
+   }
+  },
+  {
+   "id": "door-lock-v3:1012",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1012,
+   "obj": [
+    0.0221,
+    0.6542,
+    0.2194
+   ],
+   "goal": [
+    -0.0681,
+    0.6542,
+    0.111
+   ],
+   "ee0": [
+    0.001,
+    0.597,
+    0.195
+   ],
+   "image0_sha": "47ce059b96bf8101",
+   "expert": {
+    "success": true,
+    "steps": 58
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 58
+   }
+  },
+  {
+   "id": "door-lock-v3:1013",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1013,
+   "obj": [
+    0.0755,
+    0.6871,
+    0.221
+   ],
+   "goal": [
+    -0.0145,
+    0.6871,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "48870fdd81a69802",
+   "expert": {
+    "success": true,
+    "steps": 64
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 64
+   }
+  },
+  {
+   "id": "door-lock-v3:1014",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1014,
+   "obj": [
+    0.0121,
+    0.6834,
+    0.221
+   ],
+   "goal": [
+    -0.0779,
+    0.6834,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "f55b4ba22bcb8b9c",
+   "expert": {
+    "success": true,
+    "steps": 64
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 64
+   }
+  },
+  {
+   "id": "door-lock-v3:1015",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1015,
+   "obj": [
+    0.1199,
+    0.6449,
+    0.221
+   ],
+   "goal": [
+    0.0299,
+    0.6449,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "7e4027aed823fdd1",
+   "expert": {
+    "success": true,
+    "steps": 60
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 61
+   }
+  },
+  {
+   "id": "door-lock-v3:1016",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1016,
+   "obj": [
+    0.0086,
+    0.6664,
+    0.2209
+   ],
+   "goal": [
+    -0.0814,
+    0.6664,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "3637f81ddd3cb804",
+   "expert": {
+    "success": true,
+    "steps": 60
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 60
+   }
+  },
+  {
+   "id": "door-lock-v3:1017",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1017,
+   "obj": [
+    0.0007,
+    0.6876,
+    0.221
+   ],
+   "goal": [
+    -0.0893,
+    0.6876,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "bd88c21c16391109",
+   "expert": {
+    "success": true,
+    "steps": 66
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 66
+   }
+  },
+  {
+   "id": "door-lock-v3:1018",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1018,
+   "obj": [
+    0.1701,
+    0.6708,
+    0.221
+   ],
+   "goal": [
+    0.0801,
+    0.6708,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "0893782200df5242",
+   "expert": {
+    "success": true,
+    "steps": 72
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 74
+   }
+  },
+  {
+   "id": "door-lock-v3:1019",
+   "task_index": 14,
+   "env": "door-lock-v3",
+   "seed": 1019,
+   "obj": [
+    0.1161,
+    0.6593,
+    0.221
+   ],
+   "goal": [
+    0.0261,
+    0.6593,
+    0.111
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "a3bb6aa38a89373c",
+   "expert": {
+    "success": true,
+    "steps": 114
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 114
+   }
+  },
+  {
+   "id": "door-unlock-v3:1000",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1000,
+   "obj": [
+    0.0032,
+    0.6639,
+    0.121
+   ],
+   "goal": [
+    0.1132,
+    0.6639,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "0c3c490ab2483463",
+   "expert": {
+    "success": true,
+    "steps": 41
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 41
+   }
+  },
+  {
+   "id": "door-unlock-v3:1001",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1001,
+   "obj": [
+    -0.0473,
+    0.6755,
+    0.121
+   ],
+   "goal": [
+    0.0627,
+    0.6755,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "efaceb14da2dfbea",
+   "expert": {
+    "success": true,
+    "steps": 45
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 45
+   }
+  },
+  {
+   "id": "door-unlock-v3:1002",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1002,
+   "obj": [
+    -0.0274,
+    0.6646,
+    0.121
+   ],
+   "goal": [
+    0.0826,
+    0.6646,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "f3b9f25aa65429a6",
+   "expert": {
+    "success": true,
+    "steps": 43
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 43
+   }
+  },
+  {
+   "id": "door-unlock-v3:1003",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1003,
+   "obj": [
+    -0.0839,
+    0.6578,
+    0.121
+   ],
+   "goal": [
+    0.0261,
+    0.6578,
+    0.211
+   ],
+   "ee0": [
+    0.004,
+    0.6,
+    0.195
+   ],
+   "image0_sha": "73dac1b76e985833",
+   "expert": {
+    "success": true,
+    "steps": 52
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 52
+   }
+  },
+  {
+   "id": "door-unlock-v3:1004",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1004,
+   "obj": [
+    0.0854,
+    0.6842,
+    0.121
+   ],
+   "goal": [
+    0.1954,
+    0.6842,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "30b57a3761052235",
+   "expert": {
+    "success": true,
+    "steps": 44
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 46
+   }
+  },
+  {
+   "id": "door-unlock-v3:1005",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1005,
+   "obj": [
+    -0.0124,
+    0.6633,
+    0.121
+   ],
+   "goal": [
+    0.0976,
+    0.6633,
+    0.211
+   ],
+   "ee0": [
+    -0.004,
+    0.6,
+    0.196
+   ],
+   "image0_sha": "5cdc12b0bbcdeb25",
+   "expert": {
+    "success": true,
+    "steps": 41
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 42
+   }
+  },
+  {
+   "id": "door-unlock-v3:1006",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1006,
+   "obj": [
+    0.0694,
+    0.6424,
+    0.121
+   ],
+   "goal": [
+    0.1794,
+    0.6424,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "dca474442f405579",
+   "expert": {
+    "success": true,
+    "steps": 37
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 37
+   }
+  },
+  {
+   "id": "door-unlock-v3:1007",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1007,
+   "obj": [
+    0.0814,
+    0.6812,
+    0.121
+   ],
+   "goal": [
+    0.1914,
+    0.6812,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "7b4d18e862abfae4",
+   "expert": {
+    "success": true,
+    "steps": 44
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 44
+   }
+  },
+  {
+   "id": "door-unlock-v3:1008",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1008,
+   "obj": [
+    -0.0699,
+    0.6573,
+    0.121
+   ],
+   "goal": [
+    0.0401,
+    0.6573,
+    0.211
+   ],
+   "ee0": [
+    0.004,
+    0.599,
+    0.195
+   ],
+   "image0_sha": "784b3011060b3d54",
+   "expert": {
+    "success": true,
+    "steps": 43
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 43
+   }
+  },
+  {
+   "id": "door-unlock-v3:1009",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1009,
+   "obj": [
+    0.035,
+    0.6595,
+    0.121
+   ],
+   "goal": [
+    0.145,
+    0.6595,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "9029f9dc4a3aa74f",
+   "expert": {
+    "success": true,
+    "steps": 40
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 41
+   }
+  },
+  {
+   "id": "door-unlock-v3:1010",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1010,
+   "obj": [
+    -0.0777,
+    0.6685,
+    0.121
+   ],
+   "goal": [
+    0.0323,
+    0.6685,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "97c97628e57f8680",
+   "expert": {
+    "success": true,
+    "steps": 43
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 43
+   }
+  },
+  {
+   "id": "door-unlock-v3:1011",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1011,
+   "obj": [
+    -0.0059,
+    0.6846,
+    0.121
+   ],
+   "goal": [
+    0.1041,
+    0.6846,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "637706a9b23099cb",
+   "expert": {
+    "success": true,
+    "steps": 44
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 44
+   }
+  },
+  {
+   "id": "door-unlock-v3:1012",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1012,
+   "obj": [
+    -0.0781,
+    0.6542,
+    0.121
+   ],
+   "goal": [
+    0.0319,
+    0.6542,
+    0.211
+   ],
+   "ee0": [
+    0.001,
+    0.596,
+    0.195
+   ],
+   "image0_sha": "74fe0d6fafd07a8f",
+   "expert": {
+    "success": true,
+    "steps": 49
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 49
+   }
+  },
+  {
+   "id": "door-unlock-v3:1013",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1013,
+   "obj": [
+    -0.0245,
+    0.6871,
+    0.121
+   ],
+   "goal": [
+    0.0855,
+    0.6871,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "70cd76aac7d97d82",
+   "expert": {
+    "success": true,
+    "steps": 43
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 43
+   }
+  },
+  {
+   "id": "door-unlock-v3:1014",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1014,
+   "obj": [
+    -0.0879,
+    0.6834,
+    0.121
+   ],
+   "goal": [
+    0.0221,
+    0.6834,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "696e3dfbdc3325f9",
+   "expert": {
+    "success": true,
+    "steps": 45
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 44
+   }
+  },
+  {
+   "id": "door-unlock-v3:1015",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1015,
+   "obj": [
+    0.0199,
+    0.6449,
+    0.121
+   ],
+   "goal": [
+    0.1299,
+    0.6449,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "2ae20d35ce5d26c5",
+   "expert": {
+    "success": true,
+    "steps": 40
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 40
+   }
+  },
+  {
+   "id": "door-unlock-v3:1016",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1016,
+   "obj": [
+    -0.0914,
+    0.6664,
+    0.121
+   ],
+   "goal": [
+    0.0186,
+    0.6664,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "7a8268032b008d47",
+   "expert": {
+    "success": true,
+    "steps": 48
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 49
+   }
+  },
+  {
+   "id": "door-unlock-v3:1017",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1017,
+   "obj": [
+    -0.0993,
+    0.6876,
+    0.121
+   ],
+   "goal": [
+    0.0107,
+    0.6876,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "df76d7471765b149",
+   "expert": {
+    "success": true,
+    "steps": 44
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 45
+   }
+  },
+  {
+   "id": "door-unlock-v3:1018",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1018,
+   "obj": [
+    0.0701,
+    0.6708,
+    0.121
+   ],
+   "goal": [
+    0.1801,
+    0.6708,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "aef89d9369cf6914",
+   "expert": {
+    "success": true,
+    "steps": 42
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 40
+   }
+  },
+  {
+   "id": "door-unlock-v3:1019",
+   "task_index": 16,
+   "env": "door-unlock-v3",
+   "seed": 1019,
+   "obj": [
+    0.0161,
+    0.6593,
+    0.121
+   ],
+   "goal": [
+    0.1261,
+    0.6593,
+    0.211
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "372e10ea5dd2e74e",
+   "expert": {
+    "success": true,
+    "steps": 41
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 41
+   }
+  },
+  {
+   "id": "hand-insert-v3:1000",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1000,
+   "obj": [
+    -0.068,
+    0.6651,
+    0.05
+   ],
+   "goal": [
+    0.0387,
+    0.8599,
+    -0.0199
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "eed3e2ed8c4a084f",
+   "expert": {
+    "success": true,
+    "steps": 61
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 61
+   }
+  },
+  {
+   "id": "hand-insert-v3:1001",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1001,
+   "obj": [
+    -0.0541,
+    0.6457,
+    0.05
+   ],
+   "goal": [
+    0.0338,
+    0.827,
+    -0.02
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "c3af1f3009729a41",
+   "expert": {
+    "success": true,
+    "steps": 56
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 56
+   }
+  },
+  {
+   "id": "hand-insert-v3:1002",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1002,
+   "obj": [
+    0.0743,
+    0.6439,
+    0.05
+   ],
+   "goal": [
+    0.0171,
+    0.8272,
+    -0.0199
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "f3f46b053999e2d9",
+   "expert": {
+    "success": true,
+    "steps": 57
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 57
+   }
+  },
+  {
+   "id": "hand-insert-v3:1003",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1003,
+   "obj": [
+    0.0909,
+    0.671,
+    0.05
+   ],
+   "goal": [
+    -0.0133,
+    0.8141,
+    -0.02
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "6c3e1ea3f4d68503",
+   "expert": {
+    "success": true,
+    "steps": 55
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 56
+   }
+  },
+  {
+   "id": "hand-insert-v3:1004",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1004,
+   "obj": [
+    0.0116,
+    0.6382,
+    0.05
+   ],
+   "goal": [
+    0.0353,
+    0.8254,
+    -0.0199
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "c6456969717a4d21",
+   "expert": {
+    "success": true,
+    "steps": 55
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 54
+   }
+  },
+  {
+   "id": "hand-insert-v3:1005",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1005,
+   "obj": [
+    -0.0762,
+    0.6812,
+    0.05
+   ],
+   "goal": [
+    0.014,
+    0.8684,
+    -0.0199
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "3dfc06a59fa8eee1",
+   "expert": {
+    "success": true,
+    "steps": 62
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 61
+   }
+  },
+  {
+   "id": "hand-insert-v3:1006",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1006,
+   "obj": [
+    -0.0958,
+    0.651,
+    0.05
+   ],
+   "goal": [
+    -0.0183,
+    0.8398,
+    -0.0201
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "319312334d8e1785",
+   "expert": {
+    "success": true,
+    "steps": 60
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 60
+   }
+  },
+  {
+   "id": "hand-insert-v3:1007",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1007,
+   "obj": [
+    0.0926,
+    0.6178,
+    0.05
+   ],
+   "goal": [
+    -0.0004,
+    0.8148,
+    -0.02
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "52c9ee509cb78120",
+   "expert": {
+    "success": true,
+    "steps": 61
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 61
+   }
+  },
+  {
+   "id": "hand-insert-v3:1008",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1008,
+   "obj": [
+    -0.0485,
+    0.6705,
+    0.05
+   ],
+   "goal": [
+    0.0141,
+    0.8131,
+    -0.0201
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "8d376519493d1a4e",
+   "expert": {
+    "success": true,
+    "steps": 52
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 53
+   }
+  },
+  {
+   "id": "hand-insert-v3:1009",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1009,
+   "obj": [
+    0.0301,
+    0.6373,
+    0.05
+   ],
+   "goal": [
+    0.0117,
+    0.8786,
+    -0.0199
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "a99b25861feed785",
+   "expert": {
+    "success": true,
+    "steps": 65
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 65
+   }
+  },
+  {
+   "id": "hand-insert-v3:1010",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1010,
+   "obj": [
+    -0.0522,
+    0.6749,
+    0.05
+   ],
+   "goal": [
+    0.0286,
+    0.8549,
+    -0.02
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "2abecbac8d797b25",
+   "expert": {
+    "success": true,
+    "steps": 60
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 60
+   }
+  },
+  {
+   "id": "hand-insert-v3:1011",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1011,
+   "obj": [
+    0.0894,
+    0.6026,
+    0.05
+   ],
+   "goal": [
+    -0.0034,
+    0.8106,
+    -0.0199
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "b51c17f3bb5631c7",
+   "expert": {
+    "success": true,
+    "steps": 62
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 63
+   }
+  },
+  {
+   "id": "hand-insert-v3:1012",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1012,
+   "obj": [
+    0.0223,
+    0.6282,
+    0.05
+   ],
+   "goal": [
+    -0.0159,
+    0.8139,
+    -0.0201
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "136365f7f8f7a4af",
+   "expert": {
+    "success": true,
+    "steps": 54
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 53
+   }
+  },
+  {
+   "id": "hand-insert-v3:1013",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1013,
+   "obj": [
+    -0.0901,
+    0.6049,
+    0.05
+   ],
+   "goal": [
+    -0.0079,
+    0.8101,
+    -0.02
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "815c256c4368dabb",
+   "expert": {
+    "success": true,
+    "steps": 60
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 61
+   }
+  },
+  {
+   "id": "hand-insert-v3:1014",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1014,
+   "obj": [
+    0.0017,
+    0.6103,
+    0.05
+   ],
+   "goal": [
+    0.0099,
+    0.867,
+    -0.0201
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "d1b3cc87bbd51da2",
+   "expert": {
+    "success": true,
+    "steps": 55
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 55
+   }
+  },
+  {
+   "id": "hand-insert-v3:1015",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1015,
+   "obj": [
+    -0.0647,
+    0.6004,
+    0.05
+   ],
+   "goal": [
+    -0.0049,
+    0.8405,
+    -0.0199
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "811add344847505e",
+   "expert": {
+    "success": true,
+    "steps": 62
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 62
+   }
+  },
+  {
+   "id": "hand-insert-v3:1016",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1016,
+   "obj": [
+    0.0641,
+    0.6962,
+    0.05
+   ],
+   "goal": [
+    -0.0205,
+    0.8222,
+    -0.02
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "4beed676f7108219",
+   "expert": {
+    "success": true,
+    "steps": 54
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 54
+   }
+  },
+  {
+   "id": "hand-insert-v3:1017",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1017,
+   "obj": [
+    -0.0609,
+    0.6084,
+    0.05
+   ],
+   "goal": [
+    -0.005,
+    0.8149,
+    -0.02
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "c38e460ad9482773",
+   "expert": {
+    "success": true,
+    "steps": 57
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 58
+   }
+  },
+  {
+   "id": "hand-insert-v3:1018",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1018,
+   "obj": [
+    0.085,
+    0.6602,
+    0.05
+   ],
+   "goal": [
+    0.0342,
+    0.8029,
+    -0.0201
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "4a95387ee595899b",
+   "expert": {
+    "success": true,
+    "steps": 54
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 54
+   }
+  },
+  {
+   "id": "hand-insert-v3:1019",
+   "task_index": 17,
+   "env": "hand-insert-v3",
+   "seed": 1019,
+   "obj": [
+    0.0389,
+    0.6292,
+    0.05
+   ],
+   "goal": [
+    0.004,
+    0.836,
+    -0.0201
+   ],
+   "ee0": [
+    0.005,
+    0.601,
+    0.195
+   ],
+   "image0_sha": "a111dfde783107bf",
+   "expert": {
+    "success": true,
+    "steps": 59
+   },
+   "expert_quantized": {
+    "success": true,
+    "steps": 59
+   }
+  }
+ ]
+}
