@@ -58,6 +58,26 @@ Paired comparisons on the same 100 episodes (exact McNemar, paired bootstrap 95%
 - ML45 SFT vs Nemotron base: +3 points, discordant 3 / 0, p = 0.25 (not significant on success). Progress is significantly higher: +0.042 (CI +0.017 to +0.072), better on 70 of 100 episodes.
 - 5 eval scenes start within 1 cm of a 5-shot training demo (the tasks randomize over a small area; eval scenes are themselves 0.5–1.4 cm apart). Excluding them, 5-shot scores 33/95 = 34.7% (CI 25.9–44.7%).
 
+### Same held-out episode, three models
+
+Left to right: Muse Glimmer 30B (base), Nemotron Super VL (base), Nemotron + ML45 SFT + 5-shot. Re-simulated from the logged actions,
+at 10 fps (every 2nd step). Each clip ends 2 s after the 5-shot success; the base models run on to 500 steps without succeeding.
+
+**box-close, seed 1004** (5-shot succeeds at step 114)
+
+![box-close-v3 seed 1004: Glimmer, Nemotron base, Nemotron 5-shot](docs/videos/side_by_side__box-close-v3_1004.gif)
+
+**door-lock, seed 1012** (5-shot succeeds at step 57)
+
+![door-lock-v3 seed 1012: Glimmer, Nemotron base, Nemotron 5-shot](docs/videos/side_by_side__door-lock-v3_1012.gif)
+
+Full-length videos (20 fps, every step), per model and side by side:
+
+| episode | Glimmer 30B (base) | Nemotron (base) | Nemotron + SFT + 5-shot | side by side |
+|---|---|---|---|---|
+| box-close 1004 | [mp4](docs/videos/glimmer-30b__box-close-v3_1004.mp4) | [mp4](docs/videos/nemotron-super-vl__box-close-v3_1004.mp4) | [mp4](docs/videos/nemotron-ml45-5shot__box-close-v3_1004.mp4) | [mp4](docs/videos/side_by_side__box-close-v3_1004.mp4) |
+| door-lock 1012 | [mp4](docs/videos/glimmer-30b__door-lock-v3_1012.mp4) | [mp4](docs/videos/nemotron-super-vl__door-lock-v3_1012.mp4) | [mp4](docs/videos/nemotron-ml45-5shot__door-lock-v3_1012.mp4) | [mp4](docs/videos/side_by_side__door-lock-v3_1012.mp4) |
+
 ![Partial progress per held-out task](docs/figures/progress_by_task.png)
 
 ![Tokens and latency per model](docs/figures/efficiency.png)
