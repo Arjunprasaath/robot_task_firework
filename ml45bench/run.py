@@ -44,8 +44,10 @@ def _git_commit() -> str:
 
 
 def model_address(cfg: dict, acct: str) -> str:
-    dep = f"accounts/{acct}/deployments/{cfg['deployment']}"
     target = cfg.get("serve_model", cfg["base_model"]).replace("{account}", acct)
+    if cfg.get("serverless"):
+        return target
+    dep = f"accounts/{acct}/deployments/{cfg['deployment']}"
     return f"{target}#{dep}"
 
 
@@ -139,10 +141,20 @@ class Runner:
         return res
 
 
+def reply_text(cfg: dict, msg: dict) -> str:
+    """The reply is `content`. A model may name one fallback field in models.json (`answer_fallback`),
+    used only when `content` is empty: GLM 5.3 Flash cannot disable thinking with an image on Fireworks,
+    and then its grammar-constrained answer is returned as `reasoning_content`."""
+    text = msg.get("content") or ""
+    if not text and cfg.get("answer_fallback"):
+        text = msg.get(cfg["answer_fallback"]) or ""
+    return text
+
+
 def _call_model(addr: str, cfg: dict, msgs: list[dict]):
     from . import fireworks
     resp, dt, attempts = fireworks.chat(_request(addr, cfg, msgs))
-    text = resp["choices"][0]["message"].get("content") or ""
+    text = reply_text(cfg, resp["choices"][0]["message"])
     acts, valid = spec.parse_answer(text)
     return text, acts, valid, dt, attempts, resp
 

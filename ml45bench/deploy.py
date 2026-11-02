@@ -48,7 +48,7 @@ def probe(key):
     """Send one real benchmark request (first frame of the first held-out episode)."""
     from . import sim, spec
     from .manifest import load
-    from .run import _request
+    from .run import _request, reply_text
     e = load()["episodes"][0]
     ep = sim.Episode(e["task_index"], e["seed"])
     jpg, ee, closed = ep.observe()
@@ -57,7 +57,8 @@ def probe(key):
     t = time.time()
     resp, dt, att = fw.chat(body, retries=40)
     msg = resp["choices"][0]["message"]
-    print(json.dumps({"reply": msg.get("content"), "parsed": spec.parse_answer(msg.get("content") or ""),
+    text = reply_text(cfg, msg)
+    print(json.dumps({"reply": text, "parsed": spec.parse_answer(text),
                       "reasoning_chars": len(msg.get("reasoning_content") or ""), "usage": resp.get("usage"),
                       "latency_s": round(dt, 3), "attempts": att, "total_wait_s": round(time.time() - t, 1)}, indent=1))
 

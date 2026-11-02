@@ -19,7 +19,10 @@ from .report import bootstrap_mean, load_run, summarize  # noqa: E402
 from .run import MODELS  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "figures"
-SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100"]  # fixed categorical order
+SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]  # fixed categorical order
+# color follows the model, not its position in a chart
+COLOR = {"glimmer-30b": SERIES[0], "nemotron-super-vl": SERIES[1], "nemotron-ml45-sft": SERIES[2],
+         "nemotron-ml45-5shot": SERIES[3], "glm-5p3-flash": SERIES[4]}
 SURFACE, INK, INK2, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#e4e3df"
 
 plt.rcParams.update({
@@ -29,7 +32,7 @@ plt.rcParams.update({
 })
 
 
-SHORT = {"glimmer-30b": "Glimmer 30B", "nemotron-super-vl": "Nemotron base",
+SHORT = {"glimmer-30b": "Glimmer 30B", "glm-5p3-flash": "GLM 5.3 Flash", "nemotron-super-vl": "Nemotron base",
          "nemotron-ml45-sft": "Nemotron + ML45 SFT", "nemotron-ml45-5shot": "Nemotron + ML45 SFT + 5-shot"}
 
 
@@ -57,7 +60,7 @@ def progress_by_task(runs) -> Path:
         cis = [bootstrap_mean(g) for g in groups]
         ys = [i + (k - (len(runs) - 1) / 2) * h for i in range(len(rows))]
         err = [[m - c[0] for m, c in zip(means, cis)], [c[1] - m for m, c in zip(means, cis)]]
-        ax.barh(ys, means, height=h * 0.9, color=SERIES[k], label=_short(name), zorder=2)
+        ax.barh(ys, means, height=h * 0.9, color=COLOR.get(name, INK2), label=_short(name), zorder=2)
         ax.errorbar(means, ys, xerr=err, fmt="none", ecolor=INK2, elinewidth=1, capsize=2, zorder=3)
     ax.set_yticks(range(len(rows)), rows)
     ax.invert_yaxis()
@@ -79,8 +82,8 @@ def success(runs) -> Path:
     fig, ax = plt.subplots(figsize=(8, 0.9 + 0.55 * len(runs)))
     for k, (n, s) in enumerate(sums):
         lo, hi = s["success_ci95"]
-        ax.plot([lo * 100, hi * 100], [k, k], color=SERIES[k], lw=2, solid_capstyle="round", zorder=2)
-        ax.plot([s["success_rate"] * 100], [k], "o", ms=8, color=SERIES[k], mec=SURFACE, mew=2, zorder=3)
+        ax.plot([lo * 100, hi * 100], [k, k], color=COLOR.get(n, INK2), lw=2, solid_capstyle="round", zorder=2)
+        ax.plot([s["success_rate"] * 100], [k], "o", ms=8, color=COLOR.get(n, INK2), mec=SURFACE, mew=2, zorder=3)
         ax.text(hi * 100 + 0.4, k, f"{s['successes']}/{s['n']}  (95% CI {lo:.1%}–{hi:.1%})", va="center", fontsize=9)
     ax.set_yticks(range(len(sums)), [_short(n) for n, _ in sums])
     ax.invert_yaxis()
@@ -105,10 +108,10 @@ def efficiency(runs) -> Path:
     for ax, (title, f, fmt) in zip(axes, panels):
         vals = [f(s) for _, s in sums]
         xs = range(len(sums))
-        ax.bar(xs, vals, width=0.6, color=SERIES[:len(sums)], zorder=2)
+        ax.bar(xs, vals, width=0.6, color=[COLOR.get(n, INK2) for n, _ in sums], zorder=2)
         for x, v in zip(xs, vals):
             ax.text(x, v, fmt.format(v), ha="center", va="bottom", fontsize=9, color=INK)
-        ax.set_xticks(list(xs), [_short(n).replace(" + ", "\n+ ").replace("Nemotron base", "Nemotron\nbase").replace("Glimmer 30B", "Glimmer\n30B") for n, _ in sums],
+        ax.set_xticks(list(xs), [_short(n).replace(" + ", "\n+ ").replace("Nemotron base", "Nemotron\nbase").replace("Glimmer 30B", "Glimmer\n30B").replace("GLM 5.3 Flash", "GLM 5.3\nFlash") for n, _ in sums],
                       fontsize=8)
         ax.set_title(title, loc="left", fontsize=10)
         ax.yaxis.grid(True, color=GRID, zorder=0)

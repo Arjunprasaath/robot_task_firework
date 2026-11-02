@@ -63,5 +63,16 @@
     "shape": "accounts/fireworks/deploymentShapes/rft-nemotron-3-5-super-vl-ea1008-bf16-262k-b300-tp-ep",
     "gpus": "4x B300",
     "note": "LoRA served live-merged on its own deployment (no multi-LoRA shape exists for this model)"
+  },
+  "glm-5p3-flash": {
+    "display": "GLM 5.3 Flash",
+    "base_model": "accounts/fireworks/models/glm-5p3-flash",
+    "serverless": true,
+    "extra": {
+      "reasoning_effort": "low"
+    },
+    "gpus": "serverless",
+    "note": "GLM-5.3 (glm-5p3) does not accept images; Flash is the image-capable GLM 5.3 model. Every way to disable thinking (reasoning_effort none, thinking disabled, enable_thinking false) returns HTTP 400 'Invalid image or video input', so reasoning_effort is 'low' (as for Glimmer). The grammar still constrains the output to exactly 3 actions (~25 tokens), but Fireworks returns it as reasoning_content with content empty, so the answer is read from reasoning_content when content is empty.",
+    "answer_fallback": "reasoning_content"
   }
 }
