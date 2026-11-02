@@ -45,8 +45,11 @@ Replicability:
 | Muse Glimmer 30B (Meta) | 0/100 (0–3.7%) | 0.104 (0.085–0.124) | 0% | 62k | 0.89 s, 1.71 s |
 | Nemotron 3.5 Super VL 120B A12B (base) | 0/100 (0–3.7%) | 0.097 (0.078–0.117) | 0% | 89k | 0.82 s, 1.83 s |
 
-Progress (max dense reward / 10) per task, Glimmer / Nemotron: box-close 0.275 / 0.272, door-lock 0.126 / 0.116,
-door-unlock 0.095 / 0.093, hand-insert 0.023 / 0.003, bin-picking 0.002 / 0.003.
+![Partial progress per held-out task](docs/figures/progress_by_task.png)
+
+![Tokens and latency per model](docs/figures/efficiency.png)
+
+Figures: `uv run --locked --with matplotlib python -m ml45bench.plots runs/glimmer-30b runs/nemotron-super-vl`.
 
 - Both runs replay exactly from their logs (`REPLAY MATCH`).
 - Neither model solves a held-out task zero-shot. The paired comparison has no discordant episodes.
