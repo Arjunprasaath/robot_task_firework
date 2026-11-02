@@ -24,8 +24,9 @@ from . import spec  # noqa: E402
 
 
 def make_env(env_name: str, seed: int, camera_pos=spec.CAMERA_POS):
-    env = gym.make("Meta-World/MT1", env_name=env_name, seed=seed, render_mode="rgb_array",
-                   width=spec.RENDER_SIZE, height=spec.RENDER_SIZE, camera_name=spec.CAMERA)
+    """Env without gymnasium's renderer: frames come from a per-episode mujoco.Renderer
+    (gymnasium's glfw viewer breaks other envs' contexts in the same process on close)."""
+    env = gym.make("Meta-World/MT1", env_name=env_name, seed=seed)
     m, d = env.unwrapped.model, env.unwrapped.data
     cid = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_CAMERA, spec.CAMERA)
     m.cam_pos[cid] = camera_pos
@@ -33,9 +34,10 @@ def make_env(env_name: str, seed: int, camera_pos=spec.CAMERA_POS):
     return env
 
 
-def frame(env) -> np.ndarray:
-    """Raw 480x480 RGB, rotated 180 deg like the LeRobot MT50 images."""
-    return np.ascontiguousarray(np.flip(env.render(), (0, 1)))
+def frame(env, renderer) -> np.ndarray:
+    """Raw 480x480 RGB from the corner2 camera, rotated 180 deg like the LeRobot MT50 images."""
+    renderer.update_scene(env.unwrapped.data, camera=spec.CAMERA)
+    return np.ascontiguousarray(np.flip(renderer.render(), (0, 1)))
 
 
 def jpeg(rgb: np.ndarray) -> bytes:
@@ -72,6 +74,7 @@ class Episode:
         self.task_index, self.seed = task_index, seed
         self.env = make_env(spec.TEST_TASKS.get(task_index) or _env_name(task_index), seed)
         self.obs, _ = self.env.reset(seed=seed)
+        self.renderer = mujoco.Renderer(self.env.unwrapped.model, spec.RENDER_SIZE, spec.RENDER_SIZE)
         self.t = 0
         self.success_step: int | None = None
         self.max_reward = 0.0
@@ -84,7 +87,7 @@ class Episode:
         return self.success_step is not None or self.t >= spec.MAX_STEPS
 
     def observe(self, keep_frame: bool = False) -> tuple[bytes, list[float], int]:
-        rgb = frame(self.env)
+        rgb = frame(self.env, self.renderer)
         if keep_frame:
             self.frames.append(rgb)
         ee, closed = proprio(self.obs)
@@ -103,6 +106,7 @@ class Episode:
                 self.success_step = self.t
 
     def close(self):
+        self.renderer.close()
         self.env.close()
 
 
