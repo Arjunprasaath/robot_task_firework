@@ -4,10 +4,11 @@
     "base_model": "accounts/fireworks/models/muse-glimmer-30b",
     "deployment": "ml45-glimmer-30b",
     "extra": {
-      "reasoning_effort": "none"
+      "reasoning_effort": "low"
     },
     "shape": "accounts/fireworks/deploymentShapes/dkuwotf7",
-    "gpus": "1x H200"
+    "gpus": "1x H200",
+    "note": "thinking-only model: reasoning_effort 'none' is rejected (HTTP 400); 'low' is the minimum. Under the grammar it emits no reasoning text (checked: 0 reasoning chars, 24 completion tokens)."
   },
   "nemotron-super-vl": {
     "display": "NVIDIA Nemotron 3.5 Super VL 120B A12B BF16",
