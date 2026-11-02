@@ -38,22 +38,35 @@ Replicability:
 | `nemotron-ml45-sft` | Nemotron + LoRA SFT on the 45 training tasks (zero-shot on test) | 4× B300, live-merged |
 | `nemotron-ml45-5shot` | the above + LoRA warm-start on 5 demos per test task | 4× B300, live-merged |
 
-## Results (zero-shot base models, 100 held-out episodes)
+## Results (100 held-out episodes, same scenes for every model)
+
+![Success rate per model](docs/figures/success.png)
 
 | model | success (95% Wilson CI) | progress (95% CI) | invalid replies | tokens / episode | latency / call p50, p95 |
 |---|---|---|---|---|---|
-| Muse Glimmer 30B (Meta) | 0/100 (0–3.7%) | 0.104 (0.085–0.124) | 0% | 62k | 0.89 s, 1.71 s |
-| Nemotron 3.5 Super VL 120B A12B (base) | 0/100 (0–3.7%) | 0.097 (0.078–0.117) | 0% | 89k | 0.82 s, 1.83 s |
+| Muse Glimmer 30B (Meta), base | 0/100 (0–3.7%) | 0.104 (0.085–0.124) | 0% | 62k | 0.89 s, 1.71 s |
+| Nemotron 3.5 Super VL 120B A12B, base | 0/100 (0–3.7%) | 0.097 (0.078–0.117) | 0% | 89k | 0.82 s, 1.83 s |
+| Nemotron + LoRA SFT on ML45 train (45 tasks) | 3/100 (1.0–8.5%) | 0.139 (0.109–0.173) | 0% | 87k | 1.06 s, 1.18 s |
+| **Nemotron + SFT + 5-shot** (5 demos per test task) | **36/100 (27.3–45.8%)** | **0.386 (0.318–0.457)** | 0% | 65k | 1.05 s, 1.14 s |
+
+Per task (successes out of 20): 5-shot solves bin-picking 1, box-close 10, door-lock 9, door-unlock 12, hand-insert 4.
+The ML45 SFT model solves door-lock 2 and door-unlock 1; the base models solve none.
+
+Paired comparisons on the same 100 episodes (exact McNemar, paired bootstrap 95% CI):
+- 5-shot vs Nemotron base: +36 points (CI +27 to +45), 36 episodes only 5-shot solves, 0 the other way, p < 0.001. Same against Glimmer.
+- 5-shot vs ML45 SFT: +33 points (CI +23 to +43), discordant 35 / 2, p < 0.001.
+- ML45 SFT vs Nemotron base: +3 points, discordant 3 / 0, p = 0.25 (not significant on success). Progress is significantly higher: +0.042 (CI +0.017 to +0.072), better on 70 of 100 episodes.
+- 5 eval scenes start within 1 cm of a 5-shot training demo (the tasks randomize over a small area; eval scenes are themselves 0.5–1.4 cm apart). Excluding them, 5-shot scores 33/95 = 34.7% (CI 25.9–44.7%).
 
 ![Partial progress per held-out task](docs/figures/progress_by_task.png)
 
 ![Tokens and latency per model](docs/figures/efficiency.png)
 
-Figures: `uv run --locked --with matplotlib python -m ml45bench.plots runs/glimmer-30b runs/nemotron-super-vl`.
-
-- Both runs replay exactly from their logs (`REPLAY MATCH`).
-- Neither model solves a held-out task zero-shot. The paired comparison has no discordant episodes.
-- The fine-tuned Nemotron runs (ML45 SFT, then 5-shot) are pending: Fireworks dataset uploads were disabled for our account. `ml45bench/sft.py` holds the upload and training commands.
+Notes:
+- Every run replays exactly from its logs (`REPLAY MATCH`).
+- Training on Fireworks: ML45 SFT is LoRA rank 64, 1 epoch, 17,336 rows (45 tasks × 20 demos, every 4th frame), $28.35. 5-shot warm-starts from it: rank 64, 3 epochs, 1,018 rows (5 test tasks × 5 demos, every 2nd frame), $5.05. The datasets are read from a GCS bucket (`ml45bench/sft.py`, `ml45bench/build_sft_parquet.py`).
+- Qwen3.8 and Gemma 4 are configured in `models.json` but were not run.
+- Figures: `uv run --locked --with matplotlib python -m ml45bench.plots runs/<run> ...`. Videos (re-simulated from the logs, no API): `uv run --locked --with matplotlib python -m ml45bench.video --episodes box-close-v3:1004 door-lock-v3:1012 --runs runs/glimmer-30b runs/nemotron-super-vl runs/nemotron-ml45-5shot`.
 
 ## Usage
 
