@@ -1,0 +1,10 @@
+.env
+.env.*
+.venv/
+__pycache__/
+*.pyc
+data/
+runs/
+*.mp4
+.claude/
+.openresearch/
