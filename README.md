@@ -38,6 +38,20 @@ Replicability:
 | `nemotron-ml45-sft` | Nemotron + LoRA SFT on the 45 training tasks (zero-shot on test) | 4× B300, live-merged |
 | `nemotron-ml45-5shot` | the above + LoRA warm-start on 5 demos per test task | 4× B300, live-merged |
 
+## Results (zero-shot base models, 100 held-out episodes)
+
+| model | success (95% Wilson CI) | progress (95% CI) | invalid replies | tokens / episode | latency / call p50, p95 |
+|---|---|---|---|---|---|
+| Muse Glimmer 30B (Meta) | 0/100 (0–3.7%) | 0.104 (0.085–0.124) | 0% | 62k | 0.89 s, 1.71 s |
+| Nemotron 3.5 Super VL 120B A12B (base) | 0/100 (0–3.7%) | 0.097 (0.078–0.117) | 0% | 89k | 0.82 s, 1.83 s |
+
+Progress (max dense reward / 10) per task, Glimmer / Nemotron: box-close 0.275 / 0.272, door-lock 0.126 / 0.116,
+door-unlock 0.095 / 0.093, hand-insert 0.023 / 0.003, bin-picking 0.002 / 0.003.
+
+- Both runs replay exactly from their logs (`REPLAY MATCH`).
+- Neither model solves a held-out task zero-shot. The paired comparison has no discordant episodes.
+- The fine-tuned Nemotron runs (ML45 SFT, then 5-shot) are pending: Fireworks dataset uploads were disabled for our account. `ml45bench/sft.py` holds the upload and training commands.
+
 ## Usage
 
 ```bash
@@ -47,7 +61,7 @@ echo 'FIREWORK_API=<your key>' > .env                      # git-ignored
 uv run --locked python -m ml45bench.manifest --check       # same episodes on this machine?
 uv run --locked python -m ml45bench.deploy up qwen3p8-27b  # on-demand deployment (scales to zero after 15 min idle)
 uv run --locked python -m ml45bench.deploy probe qwen3p8-27b
-uv run --locked python -m ml45bench.run --model qwen3p8-27b --workers 16
+uv run --locked python -m ml45bench.run --model qwen3p8-27b --concurrency 10
 uv run --locked python -m ml45bench.run --replay runs/qwen3p8-27b
 uv run --locked python -m ml45bench.report runs/*/                # Wilson CIs, paired McNemar + bootstrap
 uv run --locked python -m ml45bench.deploy down ml45-qwen3p8-27b
